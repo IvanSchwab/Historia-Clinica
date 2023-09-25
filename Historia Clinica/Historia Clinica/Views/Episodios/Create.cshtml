@@ -1,0 +1,69 @@
+﻿@model Historia_Clinica.Models.Episodio
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Crear Episodio</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Motivo" class="control-label"></label>
+                <input asp-for="Motivo" class="form-control" />
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" style="height: 200px; resize: none;" class="form-control" /></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="PacienteId" class="control-label"></label>
+                <input asp-for="PacienteId" class="form-control" />
+                <span asp-validation-for="PacienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="EmpleadoRegistraId" class="control-label" ></label>
+                <input asp-for="EmpleadoRegistraId" class="form-control" />
+            </div>
+            <div class="form-group" hidden>
+            <label asp-for="FechaYHoraInicio" class="control-label"></label>
+            <input asp-for="FechaYHoraInicio" class="form-control" />
+            <span asp-validation-for="FechaYHoraInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+            <label asp-for="FechayHoraAlta" class="control-label"></label>
+            <input asp-for="FechayHoraAlta" class="form-control" />
+            <span asp-validation-for="FechayHoraAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+            <label asp-for="FechayHoraCierre" class="control-label"></label>
+            <input asp-for="FechayHoraCierre" class="form-control" />
+            <span asp-validation-for="FechayHoraCierre" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check" hidden>
+            <label class="form-check-label">
+            <input class="form-check-input" asp-for="EstadoAbierto" /> @Html.DisplayNameFor(model => model.EstadoAbierto)
+            </label>
+            </div>
+            <div class="form-group text-right" style="margin-top: 30px">
+                <div class="btn-group ml-auto">
+                    <input type="submit" value="Crear" class="btn btn-primary btn-lg" />
+                    <a asp-action="Index" class="btn btn-primary btn-lg">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

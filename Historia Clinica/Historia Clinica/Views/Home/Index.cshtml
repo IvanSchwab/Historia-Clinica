@@ -1,0 +1,293 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if(ViewBag.Mensaje != null)
+{
+    <div>
+        <p class="text-info">
+            @ViewBag.Mensaje
+        </p>
+    </div>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Centro Médico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .welcome-text {
+            margin-top: -40px;
+            margin-bottom: -20px;
+        }
+       
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: justify;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel {
+            margin-top: 30px;
+        }
+
+        .carousel-item {
+            position: relative;
+        }
+
+            .carousel-item img {
+                width: 100%;
+                height: 655px;
+                border-radius: 5px;
+            }
+
+            .carousel-item .carousel-caption {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 20px;
+                border-radius: 5px;
+            }
+
+        .carousel-caption h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .carousel-caption p {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: justify;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+            .social-icons a {
+                color: #fff;
+                font-size: 2rem;
+                margin-right: 10px;
+            }
+
+        .btn-about-us {
+            background-color: #28a745;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-text {
+            background-color: rgba(0, 128, 0, 0.3);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .photo-section {
+    margin-top: 30px;
+}
+
+        .photo-section {
+            margin-top: 30px;
+        }
+
+            .photo-section .photo {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 30px;
+            }
+
+                .photo-section .photo img {
+                    max-width: 40%;
+                    height: auto;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                }
+
+                .photo-section .photo + .photo {
+                    margin-top: 40px;
+                }
+
+                .photo-section .photo .caption {
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 20px;
+                    border-radius: 5px;
+                    width: 50%;
+                }
+
+                    .photo-section .photo .caption h3 {
+                        font-size: 1.8rem;
+                        color: #fff;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                        margin-bottom: 10px;
+                    }
+
+                    .photo-section .photo .caption p {
+                        font-size: 1.2rem;
+                        color: #fff;
+                        text-align: justify;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                    }
+
+                .photo-section .photo:nth-child(2) {
+                    flex-direction: row-reverse;
+                }
+
+                    .photo-section .photo:nth-child(2) .caption {
+                        text-align: right;
+                    }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <div class="welcome-text">
+                <h2>Bienvenido a <span style="color: #75AADB;">CU</span><span style="text-shadow: 1px 1px #FFD700;">ID</span><span style="color: #75AADB;">AR</span></h2>
+            </div>
+        </div>
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/img/hospital.jpg" class="d-dinamic" alt="Hospital">
+                    <div class="carousel-caption">
+                        <h2>Centro Médico Hospital</h2>
+                        <p>Servicios médicos de excelencia y atención personalizada.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/laboratorio.jpg" class="d-dinamic" alt="Laboratorio">
+                    <div class="carousel-caption">
+                        <h2>Laboratorio</h2>
+                        <p>Tecnología de vanguardia para análisis y diagnóstico.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/medico.jpg" class="d-dinamic" alt="Médico">
+                    <div class="carousel-caption">
+                        <h2>Personal Médico</h2>
+                        <p>Especialistas altamente capacitados y trato humano.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="photo-section">
+            <div class="photo">
+                <img src="/img/covid.png" alt="Foto 1">
+                <div class="caption">
+                    <h3>COVID-19</h3>
+                    <p>En nuestra CuidARG, nos comprometemos seriamente con la salud y seguridad de nuestros pacientes y personal. Hemos implementado medidas rigurosas para garantizar un entorno seguro y protegido. Seguimos las pautas de las autoridades sanitarias y cumplimos con altos estándares de seguridad e higiene. Algunas de nuestras medidas incluyen el uso obligatorio de mascarillas, desinfección constante de instalaciones y equipos, control de temperatura y síntomas, distanciamiento social, estaciones de desinfección de manos y uso de equipos de protección personal. Estamos comprometidos en brindar atención médica de calidad sin comprometer la salud de nuestros pacientes. Si tienes preguntas, estamos aquí para ayudarte.</p>
+                    <br />
+    <p>
+        Para más información, puedes verificar en la página oficial del gobierno de la ciudad.
+    </p>
+    <a href="https://buenosaires.gob.ar/coronavirus#:~:text=Uso%20de%20barbijo%20o%20tapabocas,test%20a%20través%20de%20BOTI" class="btn btn-primary">Más información</a>
+
+                </div>
+            </div>
+
+            <div class="photo">
+                <img src="/img/personal.png" alt="Foto 2">
+                <div class="caption">
+ <h3 style="text-align:left">Personal médico altamente capacitado</h3>
+    <p>
+        En nuestra clínica, contamos con un equipo de profesionales de la salud altamente capacitado y comprometido con brindar la mejor atención médica a nuestros pacientes. Nuestro personal está formado por médicos, enfermeras y especialistas en diversas áreas de la medicina, quienes se mantienen actualizados con los avances más recientes en sus respectivos campos.
+    </p>
+    <p>
+        Nuestro equipo médico ha recibido una formación rigurosa y continua, que incluye programas de educación médica, cursos de actualización y participación en conferencias y simposios médicos. Estamos comprometidos con la excelencia en la atención y nos esforzamos por brindar un trato humano y personalizado a cada paciente.
+    </p>
+    <p>
+        Además de su sólida formación académica, nuestro personal de salud posee una amplia experiencia práctica, habiendo tratado con éxito una amplia variedad de condiciones médicas. Estamos preparados para enfrentar los desafíos de salud más complejos y brindar soluciones efectivas a nuestros pacientes.
+    </p>
+    <p>
+        Nuestro compromiso con la calidad y la seguridad se refleja en la constante actualización de nuestros conocimientos y la adopción de las mejores prácticas médicas. Nos esforzamos por establecer una relación de confianza con cada paciente, escuchando atentamente sus necesidades y brindando un enfoque integral y personalizado en su atención.
+    </p>
+                   </div>
+            </div>
+
+            <div class="photo">
+                <img src="/img/rcp.png" alt="Foto 3">
+                <div class="caption">
+                    <h2>Capacitaciones de RCP</h2>
+                    <p>
+                        En nuestra clínica, nos preocupamos por la seguridad y el bienestar de la comunidad en general. Es por eso que ofrecemos cursos gratuitos de Reanimación Cardiopulmonar (RCP) para capacitar a las personas y crear conciencia sobre la importancia de saber cómo responder en situaciones de emergencia.
+                    </p>
+                   
+                    <p>
+                        Creemos que todos tienen el potencial de marcar la diferencia en una situación de emergencia. Al brindar estos cursos gratuitos, esperamos aumentar la conciencia sobre la importancia de la RCP y capacitar a más personas para que puedan actuar rápidamente y brindar ayuda vital hasta que llegue personal médico especializado.
+                    </p>
+                    <p>
+                        Los cursos de RCP son impartidos por profesionales médicos altamente capacitados y se adaptan para satisfacer las necesidades de diferentes grupos, desde adultos hasta adolescentes y niños.
+                    </p>
+                    <p>
+                        ¡Te invitamos a unirte a nosotros y aprender estas habilidades que pueden salvar vidas!
+                    </p>
+                    <p>
+                        <a href="https://www.argentina.gob.ar/turismoydeportes/capacitate/turismo/rcp-y-primeros-auxilios" class="btn btn-primary">¡Anotate!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="mt-4" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 5px; border-top: 1px solid #fff;">
+            <h2 style="color: #fff;">Calidad, renovación edilicia y servicio al cuidado de la salud.</h2>
+            <p style="color: #fff;">
+                Es un centro médico prestigioso y reconocido que brinda servicios de máxima calidad y eficiencia.
+                A lo largo de los años, se ha ampliado y modernizado hasta convertirse en uno de los más destacados de Argentina.
+                Recientemente ha culminado un importante proyecto de renovación edilicia y tecnológica, que incluye la remodelación y ampliación
+                total de sus instalaciones, así como la incorporación de equipamiento de última tecnología a nivel mundial.
+                Esto le permite optimizar e incrementar la cantidad y calidad de los servicios que brinda a sus pacientes.
+            </p>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+    </div>
+</body>
+</html>

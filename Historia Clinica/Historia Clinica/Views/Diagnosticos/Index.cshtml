@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Diagnostico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+
+<h1>Diagnosticos</h1>
+
+<div>
+    <form>
+        <input type="submit" value="Regresar" class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Pacientes" />
+    </form>
+</div>
+
+<table class="table">
+    <thead class="header-tablas">
+        <tr>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.Epicrisis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recomendacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.Epicrisis.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recomendacion)
+                </td>
+                <td>
+                    @if (User.IsInRole(Config.AdminRolName))
+                    {
+                        <a class="btn-estandar btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    
+                        <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+
+                        <a class="btn-estandar btn-sm" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

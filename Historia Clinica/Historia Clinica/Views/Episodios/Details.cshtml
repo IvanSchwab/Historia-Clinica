@@ -1,0 +1,70 @@
+﻿@model Historia_Clinica.Models.Episodio
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h3>Detalles del Episodio</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PacienteId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Paciente.Fullname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaYHoraInicio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaYHoraInicio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechayHoraAlta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechayHoraAlta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechayHoraCierre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechayHoraCierre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoAbierto)
+        </dt>
+        <dd class = "col-sm-10">
+            <span class="checkbox @(Model.EstadoAbierto ? "checkbox-verde" : "checkbox-rojo") @(Model.EstadoAbierto ? "checked" : "")"></span>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpleadoRegistra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmpleadoRegistra.Fullname)
+        </dd>
+    </dl>
+</div>
+<div class="text-right">
+    @if (User.IsInRole(Config.EmpleadoRolName) || (User.IsInRole(Config.AdminRolName)))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-lg">Editar</a>
+    }
+    <a asp-action="Index" class="btn btn-primary btn-lg" asp-route-Pacienteid="@Model.PacienteId">Regresar a Lista</a>
+</div>

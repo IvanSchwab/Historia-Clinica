@@ -1,0 +1,183 @@
+﻿@{
+    Persona usuario = null;
+
+    if(User.Identity.IsAuthenticated)
+    {
+        usuario = await userManager.GetUserAsync(User);
+    }
+    string fotopath = Config.FotoURL + (usuario == null ? Config.FotoDef : usuario.Foto);
+} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Historia Clinica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/estiloPersonalizado.css" asp-append-version="true" />
+</head>
+<body>
+  <header class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+
+                    <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    // Roles comunes para todas las opciones
+                    bool isEmpleado = User.IsInRole(Config.EmpleadoRolName);
+                    bool isMedico = User.IsInRole(Config.MedicoRolName);
+                    bool isAdmin = User.IsInRole(Config.AdminRolName);
+                    bool isPaciente = User.IsInRole(Config.PacienteRolname);
+
+                    // Medicos
+                    if (isEmpleado || isMedico || isAdmin)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Medicos" asp-action="Index">Medicos</a>
+                        </li>
+                    }
+
+                    // Empleados
+                    if (isEmpleado || isAdmin)
+                    {
+                        <li class="nav-item">
+                                <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a>
+                        </li>
+                    }
+
+                    // Pacientes
+                    if (isEmpleado || isMedico || isAdmin)
+                    {
+                        <li class="nav-item">
+                                <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                        </li>
+                    }
+
+                    // Mis Datos (solo para pacientes)
+                    if (isPaciente)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Pacientes" asp-action="Index">Mis Datos</a>
+                        </li>
+                    }
+
+                    // Historia Clinica (solo para pacientes)
+                    if (isPaciente)
+                    {
+                        <li class="nav-item">
+                                <a class="nav-link text-white with-shadow" asp-area="" asp-controller="Episodios" asp-action="Index">Historia Clinica</a>
+                        </li>
+                    }
+
+                    // Historia Clinica (opciones adicionales para administradores)
+                    if (isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white with-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Historia Clinica
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Episodios" asp-action="Index">Episodios</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Evoluciones" asp-action="Index">Evoluciones</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Notas" asp-action="Index">Notas</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Epicrisis" asp-action="Index">Epicrisis</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Diagnosticos" asp-action="Index">Diagnosticos</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+
+                    // Listados (opciones adicionales para administradores)
+                    if (isAdmin)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white with-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Listados
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ListarRoles">Lista de Roles</a>
+                                </li>
+                                <li class="nav-item text-dark">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ListarMedicos">Lista de Medicos</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    // Opciones de usuario logeado
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src=@fotopath width="20" height="20" class="rounded-circle" asp-append-version="true">
+                        </a>
+                        <span class="dropdown-header text-white"></span>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a>@User.Identity.Name</a></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="SubirFoto">Cambiar Foto</a></li>
+                            <li><a class="dropdown-item text-white bg-danger" asp-controller="Account" asp-action="CerrarSesion" style="margin-bottom:0px">Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    // Opciones para usuario sin sesión iniciada
+                    <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Registrar">Registrate</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="IniciarSesion">Iniciar Sesion</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color: #e6f2ff; position: fixed; bottom: 0; width: 100%;">
+    <div class="container">
+        <small style="display: flex; justify-content: center;">
+            <button type="button" class="btn btn-sm btn-info" style="padding: 6px 12px; font-size: 14px; margin-right: 10px;" onclick="location.href='@Url.Action("Carga", "PreCarga")'">Pre Carga Db</button>
+            <button type="button" class="btn btn-link" style="padding: 6px 12px; font-size: 14px; background-color: #e6f2ff;" onclick="location.href='mailto:contacto@centromedico.com.ar'">Mail</button>
+            <button type="button" class="btn btn-link" style="padding: 6px 12px; font-size: 14px; background-color: #e6f2ff;" onclick="location.href='tel:+549114123456'">Telefono</button>
+            <button type="button" class="btn btn-link" style="padding: 6px 12px; font-size: 14px; background-color: #e6f2ff;" onclick="window.open('https://www.instagram.com/ortargentina/?hl=es', '_blank')">Instagram</button>
+            <button type="button" class="btn btn-link" style="padding: 6px 12px; font-size: 14px; background-color: #e6f2ff;" onclick="location.href='pdf/Terminos_y_condiciones.pdf'">Términos y condiciones</button>
+            <button type="button" class="btn btn-link" style="padding: 6px 12px; font-size: 14px; background-color: #e6f2ff;" onclick="location.href='pdf/Politica_de_Privacidad.pdf'">Política de Privacidad</button>
+        </small>
+    </div>
+</footer>
+
+
+
+     <script src="~/Scripts/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

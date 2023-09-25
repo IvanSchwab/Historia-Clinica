@@ -1,0 +1,40 @@
+﻿@model Historia_Clinica.Models.Diagnostico
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Crear Diagnostico</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label" autocomplete="off"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recomendacion" class="control-label"></label>
+                <input asp-for="Recomendacion" class="form-control" />
+                <span asp-validation-for="Recomendacion" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <input asp-for="EpicrisisId" />
+            </div>
+            <br>
+            <div class="form-group text-right" style="margin-top: 30px">
+                <input type="submit" value="Crear" class="btn btn-primary btn-lg" />
+                <a class="btn btn-primary btn-lg" asp-action="Index">Regresar a lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

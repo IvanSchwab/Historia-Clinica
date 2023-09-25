@@ -1,0 +1,34 @@
+﻿@model Historia_Clinica.Models.Epicrisis
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h3>Detalles de la Epicrisis</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Medico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Medico.Fullname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaYHora)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechaYHora)
+        </dd>
+    </dl>
+</div>
+<div class="text-right">
+    @if (!User.IsInRole(Config.PacienteRolname))
+    {
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-lg">Editar</a>
+    }
+    <a asp-action="Index" class="btn btn-primary btn-lg" asp-route-episodioId="@Model.EpisodioId">Regresar a Lista</a>
+</div>

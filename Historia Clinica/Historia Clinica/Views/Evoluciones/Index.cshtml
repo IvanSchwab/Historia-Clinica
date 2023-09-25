@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Evolucion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Evoluciones</h1>
+
+<div style="margin-top: 10px; margin-bottom: 10px">
+    <form>
+        <input type="submit" value="Regresar" class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Pacientes" />
+    </form>
+</div>
+
+<table class="table">
+    <thead class="header-tablas">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DescripcionAtencion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaYHoraInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechayHoraAlta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechayHoraCierre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoAbierto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionAtencion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaYHoraInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechayHoraAlta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechayHoraCierre)
+                </td>
+               <td>
+                    <span class="checkbox @(item.EstadoAbierto ? "checkbox-verde" : "checkbox-rojo") @(item.EstadoAbierto ? "checked" : "")"></span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medico.Fullname)
+                </td>
+                <td>
+                         <form>
+                            <div style="display: flex; flex-direction: column;">
+                                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                @if ((User.IsInRole(Config.MedicoRolName) || (User.IsInRole(Config.AdminRolName))))
+                                    { 
+                                    <a class="btn-estandar btn-sm" asp-action="Cerrar" asp-route-id="@item.Id" style="flex: 1;">Cerrar Evolucion</a>
+                                    <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id" style="flex: 1; width: 152px">Detalles</a>
+                                    <a class="btn-estandar btn-sm" asp-action="Create" asp-route-evolucionId="@item.Id" asp-controller="Notas" style="flex: 1;">Crear Nota</a>
+                                    <a class="btn-estandar btn-sm" asp-action="Index" asp-route-evolucionId="@item.Id" asp-controller="Notas" style="flex: 1;">Ver Notas</a>
+                                    }
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                @if ((User.IsInRole(Config.EmpleadoRolName)) || (User.IsInRole(Config.PacienteRolname)))
+                                    {
+                                    <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id" style="flex: 1; width: 152px">Detalles</a>
+                                    }
+                                    @if ((User.IsInRole(Config.AdminRolName)))
+                                    {
+                                        <a class="btn-estandar btn-sm" asp-action="Edit" style="flex: 1; width: 152px" asp-route-id="@item.Id">Editar</a>
+                                        <a class="btn-estandar btn-sm" asp-action="Delete" style="flex: 1; width: 152px" asp-route-id="@item.Id">Eliminar</a>
+                                    }
+                                </div>
+                            </div>
+                          </form>
+                </td>
+              
+            </tr>
+        }
+    </tbody>
+</table>

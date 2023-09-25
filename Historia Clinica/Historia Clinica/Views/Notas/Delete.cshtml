@@ -1,0 +1,43 @@
+﻿@model Historia_Clinica.Models.Nota
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h3>¿Desea descartar la siguiente Nota?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mensaje)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mensaje)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaYHora)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaYHora)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Empleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Empleado.Fullname)
+        </dd>
+        <div class="row ml-4 col-md-6">
+            <div class="col-md-6">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-primary btn-lg">Regresar a Lista</a>
+                        <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </dl>
+</div>

@@ -1,0 +1,327 @@
+﻿
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar-brand {
+    background: url(../img/logo-HistoriaClinica.png) no-repeat;
+    background-size: 37px 42px;
+    height: 42px;
+    width: 42px;
+    margin: 0px;
+}
+
+.btn-dark {
+    margin: 5px;
+    font-size: 12px;
+    border-radius: 3px 4px;
+    padding: 15px;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.btn-estandar {
+    background-color: #3f51b5;
+    border-radius: 3px 4px;
+    color: white;
+}
+
+.header-tablas {
+    background-color: #3f51b5;
+    color: white;
+    vertical-align: middle;
+    border-radius: 20px;
+}
+
+a {
+    opacity: 0.6;
+    transition: 0.5s;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    cursor: text;
+    background-color: white;
+    margin: 0em;
+    padding: 1px 8px;
+    border-width: 2px;
+    border-style: none;
+    border-image: none;
+    appearance: auto;
+    user-select: none;
+    white-space: nowrap;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: white;
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: none;
+    border-color: none;
+    border-image: none;
+    text-decoration: none;
+}
+
+    a:hover {
+        opacity: 1;
+        color: black;
+    }
+
+input[type="submit" i] {
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: #D4EAF6;
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: none;
+    border-color: none;
+    border-image: none;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    font-style:;
+    font-variant-ligatures:;
+    font-variant-caps:;
+    font-variant-numeric:;
+    font-variant-east-asian:;
+    font-weight:;
+    font-stretch:;
+    font-size:;
+    font-family:;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+button {
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: white;
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: none;
+    border-color: none;
+    border-image: none;
+}
+
+button {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    cursor: text;
+    background-color: white;
+    margin: 0em;
+    padding: 1px 8px;
+    border-width: 2px;
+    border-style: none;
+    border-image: none;
+}
+
+
+
+.nav-link {
+    background-color: royalblue;
+}
+
+    .nav-link:hover {
+        color: #fff !important;
+        background-color: royalblue !important;
+    }
+
+
+.navbar-brand {
+    color: #007bff !important;
+}
+
+.dropdown-item {
+    color: #000 !important;
+}
+
+
+    .dropdown-item:hover {
+        color: #fff !important;
+        background-color: #007bff !important;
+    }
+
+/* Estilos personalizados para el encabezado */
+header {
+    background-color: royalblue;
+    padding: 15px;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: justify;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel {
+    margin-top: 30px;
+}
+
+.carousel-item {
+    position: relative;
+}
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .carousel-item .carousel-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+.carousel-caption h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: justify;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+    .social-icons a {
+        color: #fff;
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+
+.btn-about-us {
+    background-color: #28a745;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-text {
+    background-color: rgba(0, 128, 0, 0.3);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.with-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+    color: white;
+}
+
+.fotoChica {
+    height: 30px;
+    width: 30px;
+}
+
+.foto-grilla {
+    height: 100px;
+    width: 100px;
+}
+
+.foto-detalles {
+    height: 225px;
+    width: 225px;
+}
+
+.foto-Edit {
+    border: solid 1px;
+    border-radius: 25px;
+    height: 60px;
+    width: 60px;
+}

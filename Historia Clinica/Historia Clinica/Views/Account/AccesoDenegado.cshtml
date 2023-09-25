@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Acceso Denegado";
+    bool hayReturnUrl = !string.IsNullOrEmpty(ViewBag.ReturnUrl);
+}
+
+<div class="text-center text-black" style="background-color:white">
+    <h1> Su usuario no tiene los permisos suficientes 
+    </h1>
+    <img src="~/img/You_Shall_Not_Pass.jpg" />
+    <a asp-action="CerrarSesion">Cerrar Sesion</a>
+</div>

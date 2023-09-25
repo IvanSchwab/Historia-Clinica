@@ -1,0 +1,95 @@
+﻿@model Historia_Clinica.Models.Empleado
+
+@{
+    ViewData["Title"] = "Details";
+    string fotopath = Varios.GetUrlPath(Config.FotoURL, Model.Foto, Config.FotoDef);
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Datos del Empleado:</h1>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Legajo)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Legajo)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Apellido)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.DNI)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.DNI)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Telefono)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-8">
+                    <a href="mailto:@Model.Email" style="color: blue; text-decoration: underline;">@Model.Email</a>
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Direccion.DireccionCompleta)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.FechaAlta)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.FechaAlta)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+            </dl>
+            <div class="text-right">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-lg">Editar</a>
+                <a asp-action="Index" class="btn btn-primary btn-lg">Regresar a Lista</a>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="text-center">
+                @if (User.IsInRole(Config.MedicoRolName))
+                {
+                    <a asp-action="SubirFoto" asp-controller="Account">
+                        <img src="@fotopath" class="rounded-circle foto-detalles" alt="Foto Usuario" asp-append-version="true" width="200" height="200">
+                    </a>
+                }
+                else
+                {
+                    <img src="@fotopath" class="rounded-circle foto-detalles" alt="Foto Usuario" asp-append-version="true" width="200" height="200">
+                }
+                <figcaption class="figure-caption text-right" style="font-weight:bold">Foto Usuario @Model.UserName</figcaption>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model Historia_Clinica.ViewModels.Representacion
+
+@{
+    ViewData["Title"] = "Subir";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Subir Foto</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group row">
+                <label asp-for="Imagen" class="control-label"></label>
+            </div>
+
+            <div class="input-group mb-3">
+                <input class="form-control" asp-for="Imagen">
+                <input type="submit" value="Subir" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <form asp-action="EliminarFoto" asp-controller="Account" asp-route-id="@User.Claims.FirstOrDefault().Value">
+        <div>
+            <button style="line-height: 8px; padding-right: 75px; height: 40px;" type="submit" class="btn btn-danger">
+                Eliminar
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Medico>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h1>Medicos</h1>
+
+    <div style="margin-top: 10px; margin-bottom: 15px;">
+        <form>
+            <input name="medicoBuscado" type="text" placeholder="Ingrese apellido de medico" />
+            <button type="submit" class="btn-estandar btn-grande">Buscar</button>
+        </form>
+    </div>
+   
+    <table class="table">
+        <thead class="header-tablas">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Legajo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Matricula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DNI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th hidden>
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </th>
+                <th hidden>
+                    @Html.DisplayNameFor(model => model.FechaAlta)
+                </th>
+                <th hidden>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Legajo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Matricula)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DNI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        <a href="mailto:@item.Email" style="color: blue; text-decoration: underline;">@item.Email</a>
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(modelItem => item.Direccion.DireccionCompleta)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(modelItem => item.FechaAlta)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        <a class="btn-estandar btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                        <a class="btn-estandar btn-sm" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (User.IsInRole(Config.AdminRolName) || User.IsInRole(Config.EmpleadoRolName))
+    {
+    <p style="text-align: right; margin-right: 200px;">
+        <a type="submit" class="btn-estandar btn-azul-oscuro" asp-action="Create">Crear nuevo</a>
+    </p>
+    }
+</body>
+</html>

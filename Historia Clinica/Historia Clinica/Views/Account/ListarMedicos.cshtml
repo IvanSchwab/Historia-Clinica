@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Medico>
+
+@{
+    ViewData["Title"] = "Medicos";
+}
+
+<h1>Medicos</h1>
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

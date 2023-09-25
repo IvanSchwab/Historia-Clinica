@@ -1,0 +1,170 @@
+﻿@model RegistroPaciente
+
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        margin-top: -15px;
+    }
+
+    .form-container {
+        max-width: 800px;
+        padding: 30px;
+        background-color: lightskyblue;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    .form-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        flex-basis: 150px;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        padding: 10px 20px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+  .field-container {
+    position: relative;
+    top: 10px;
+    margin-bottom: 33px; 
+}
+
+.field-container .text-danger {
+    position: absolute;
+    top: 39px; 
+    left: 0;
+    color: red;
+    list-style-type: disc;
+}
+
+footer {
+    display: none;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+
+</style>
+
+
+<div class="container">
+    <div class="form-container">
+        <h1 style="background-color: rgba(0, 0, 0, 0.5); padding: 20px;">Registrate</h1>
+
+                  <form asp-action="Registrar">
+        <div class="row">
+            <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label font-weight-bold">Correo electrónico:</label>
+                        <div class="field-container">
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Nombre" class="control-label font-weight-bold">Nombre:</label>
+                        <div class="field-container">
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Apellido" class="control-label font-weight-bold">Apellido:</label>
+                        <div class="field-container">
+                            <input asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="DNI" class="control-label font-weight-bold">DNI:</label>
+                        <div class="field-container">
+                            <input asp-for="DNI" class="form-control" />
+                            <span asp-validation-for="DNI" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Telefono" class="control-label font-weight-bold">Teléfono:</label>
+                        <div class="field-container">
+                            <input asp-for="Telefono" class="form-control" />
+                            <span asp-validation-for="Telefono" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="control-label font-weight-bold">Contraseña:</label>
+                        <div class="field-container">
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ConfirmacionPassword" class="control-label font-weight-bold">Confirmar Contraseña:</label>
+                        <div class="field-container">
+                            <input asp-for="ConfirmacionPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmacionPassword" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Calle" class="control-label font-weight-bold">Calle:</label>
+                        <div class="field-container">
+                            <input asp-for="Calle" class="form-control" />
+                            <span asp-validation-for="Calle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Altura" class="control-label font-weight-bold">Altura:</label>
+                        <div class="field-container">
+                            <input asp-for="Altura" class="form-control" />
+                            <span asp-validation-for="Altura" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Localidad" class="control-label font-weight-bold">Localidad:</label>
+                        <div class="field-container">
+                            <input asp-for="Localidad" class="form-control" />
+                            <span asp-validation-for="Localidad" class="text-danger field-validation-error"></span>
+                        </div>
+                    </div>
+                   <div class="form-group text-center">
+                        <input type="submit" value="Registrar" class="btn btn-primary btn-lg" style="margin-top: 35px;" />
+                   </div>
+            </div>
+        </div>
+            </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

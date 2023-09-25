@@ -1,0 +1,64 @@
+﻿@model Historia_Clinica.Models.Evolucion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h3>Editar Evolucion</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" hidden >
+                <label asp-for="NotaId" class="control-label"></label>
+                <input asp-for="NotaId" class="form-control" />
+                <span asp-validation-for="NotaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionAtencion" class="control-label"></label>
+                <input asp-for="DescripcionAtencion" class="form-control" />
+                <span asp-validation-for="DescripcionAtencion" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="FechaYHoraInicio" class="control-label"></label>
+                <input asp-for="FechaYHoraInicio" class="form-control" />
+                <span asp-validation-for="FechaYHoraInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group" >
+                <label asp-for="FechayHoraAlta" class="control-label"></label>
+                <input asp-for="FechayHoraAlta" class="form-control" />
+                <span asp-validation-for="FechayHoraAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="FechayHoraCierre" class="control-label"></label>
+                <input asp-for="FechayHoraCierre" class="form-control" />
+                <span asp-validation-for="FechayHoraCierre" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check" hidden>
+                <label class="form-check-label" >
+                    <input class="form-check-input" asp-for="EstadoAbierto" /> @Html.DisplayNameFor(model => model.EstadoAbierto )
+                </label>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="MedicoId" class="control-label"></label>
+                <select asp-for="MedicoId" class="form-control" asp-items="ViewBag.MedicoId"></select>
+                <span asp-validation-for="MedicoId" class="text-danger"></span>
+            </div>
+            <div class="form-group text-right" style="margin-right: 100px;">
+                <br />
+                <div class="btn-group ml-auto">
+                    <input type="submit" value="Guardar" class="btn btn-primary btn-lg" />
+                    <a asp-action="Index" class="btn btn-primary btn-lg">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

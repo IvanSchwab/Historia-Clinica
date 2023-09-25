@@ -1,0 +1,74 @@
+﻿@model Historia_Clinica.Models.Episodio
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h3>¿Desea descartar el siguiente Episodio?</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaYHoraInicio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaYHoraInicio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechayHoraAlta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechayHoraAlta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechayHoraCierre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechayHoraCierre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EstadoAbierto)
+        </dt>
+        <dd class = "col-sm-10">
+            <span class="checkbox @(Model.EstadoAbierto ? "checkbox-verde" : "checkbox-rojo") @(Model.EstadoAbierto ? "checked" : "")"></span>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Epicrisis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Epicrisis.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpleadoRegistra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmpleadoRegistra.Fullname)
+        </dd>
+    </dl>
+    <div class="row ml-4 col-md-6">
+        <div class="col-md-6">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-primary btn-lg" asp-route-Pacienteid="@Model.PacienteId">Regresar a Lista</a>
+                    <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

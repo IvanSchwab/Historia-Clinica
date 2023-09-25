@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Episodio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Episodios</h1>
+
+<div style="margin-top: 10px; margin-bottom: 10px;">
+    <form>
+        <input type="submit" value="Regresar" class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Pacientes" />
+    </form>
+</div>
+<table class="table">
+    <thead class="header-tablas">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaYHoraInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechayHoraAlta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechayHoraCierre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoAbierto)
+            </th>
+
+            <th hidden>
+                @Html.DisplayNameFor(model => model.Epicrisis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpleadoRegistra)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paciente.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaYHoraInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechayHoraAlta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechayHoraCierre)
+                </td>
+                <td>
+                    <span class="checkbox @(item.EstadoAbierto ? "checkbox-verde" : "checkbox-rojo") @(item.EstadoAbierto ? "checked" : "")"></span>
+                </td>
+
+
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.Epicrisis.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpleadoRegistra.Fullname)
+                </td>
+
+
+                @if (User.IsInRole(Config.PacienteRolname))
+                {
+                    <td>
+                        <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="width: 42%;" asp-controller="Epicrisis">Epicrisis</a>
+                        <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="width: 42%;" asp-controller="Evoluciones">Evoluciones</a>
+                        <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id" style="margin-top: 10px; width: 88%;">Detalles</a>
+                    </td>
+                }
+                else @if (User.IsInRole(Config.MedicoRolName))
+                {
+                    <td>
+                        <form>
+                            @if (item != null && item.EstadoAbierto)
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Cerrar" asp-route-id="@item.Id">Cerrar Episodio</a>
+                            }
+                            else
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Cerrar" asp-route-id="@item.Id" disabled style="background-color: #ccc; cursor: not-allowed;">Cerrar Episodio</a>
+                            }
+
+                            <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="width: 150px;" asp-controller="Epicrisis">Ver Epicrisis</a>
+                            @if (item != null && item.EstadoAbierto)
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Create" asp-route-episodioId="@item.Id" style="margin-top: 10px;" asp-controller="Evoluciones">Crear Evolucion</a>
+                            }
+                            else
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Create" asp-route-episodioId="@item.Id" disabled style="background-color: #ccc; cursor: not-allowed;" asp-controller="Evoluciones">Crear Evolucion</a>
+
+                            }                           
+                            <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="margin-top: 10px;" asp-controller="Evoluciones">Ver Evoluciones</a>
+                            <div style="text-align: center;">
+                                <a class="btn-estandar btn-sm" asp-action="Edit" style="width: 318px; margin-top: 10px;" asp-route-id="@item.Id">Cargar Fecha Alta</a>
+                                <a class="btn-estandar btn-sm" asp-action="Details" style="width: 318px; margin-top: 10px;" asp-route-id="@item.Id">Detalles</a>
+
+                            </div>
+                        </form>
+                    </td>
+                }
+
+                else if (User.IsInRole(Config.EmpleadoRolName))
+                {
+                    <td>
+                        <form>
+                            <div style="text-align: center;">
+                                <a class="btn-estandar btn-sm" asp-action="Details" style="width: 318px; margin-top: -10px;" asp-route-id="@item.Id">Detalles</a>
+                            </div>
+                        </form>
+                    </td>
+                }
+                else if (User.IsInRole(Config.AdminRolName))
+                {
+                    <td>
+                        <form>
+                            @if (item != null && item.EstadoAbierto)
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Cerrar" asp-route-id="@item.Id">Cerrar Episodio</a>
+                            }
+                            else
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Cerrar" asp-route-id="@item.Id" disabled style="background-color: #ccc; cursor: not-allowed;">Cerrar Episodio</a>
+                            }
+
+                            <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="width: 150px;" asp-controller="Epicrisis">Ver Epicrisis</a>
+
+                            @if (item != null && item.EstadoAbierto)
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Create" asp-route-episodioId="@item.Id" style="margin-top: 10px;" asp-controller="Evoluciones">Crear Evolucion</a>
+                            }
+                            else
+                            {
+                                <a class="btn-estandar btn-sm" asp-action="Create" asp-route-episodioId="@item.Id" disabled style="background-color: #ccc; cursor: not-allowed;" asp-controller="Evoluciones">Crear Evolucion</a>
+
+                            }
+
+                            
+                            <a class="btn-estandar btn-sm" asp-action="Index" asp-route-episodioId="@item.Id" style="margin-top: 10px;" asp-controller="Evoluciones">Ver Evoluciones</a>
+
+                            <div style="text-align: center;">
+                                <a class="btn-estandar btn-sm" asp-action="Edit" style="width: 150px; margin-top: 10px;" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn-estandar btn-sm" asp-action="Delete" style="width: 150px; margin-top: 10px;" asp-route-id="@item.Id">Eliminar</a>
+                                <a class="btn-estandar btn-sm" asp-action="Details" style="width: 318px; margin-top: 10px;" asp-route-id="@item.Id">Detalles</a>
+                            </div>
+                        </form>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>

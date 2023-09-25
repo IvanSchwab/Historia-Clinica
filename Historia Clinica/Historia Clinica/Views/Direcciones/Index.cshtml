@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Direccion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="margin-top: 10px; margin-bottom: 10px">
+    <form>
+        <input type="submit" value="Regresar" class="btn-estandar" asp-action="Index" asp-controller="Pacientes" />
+    </form>
+</div>
+
+<h1>Direcciones</h1>
+
+<p>
+    <a asp-action="Create">Crear</a>
+</p>
+<table class="header-tablas">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Calle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Altura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidad)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

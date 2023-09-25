@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Historia_Clinica.Models.Epicrisis>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Epicrisis</h1>
+
+<div style="margin-top: 10px; margin-bottom: 10px; color:lightslategray">
+    <form>
+        <input type="submit" value="Regresar" class="btn btn-primary btn-lg" asp-action="Index" asp-controller="Episodios" />
+    </form>
+</div>
+
+
+@*<p>
+    <a asp-action="Create">Crear</a>
+</p>*@
+<table class="table">
+    <thead class="header-tablas">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaYHora)
+            </th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaYHora)
+            </td>
+                <td>
+                    <a class="btn-estandar btn-sm" asp-action="Index" asp-route-EpicrisisId="@item.Id" asp-controller="Diagnosticos">Ver Diagnostico</a>
+
+                </td>
+            <td>
+                    @if(User.IsInRole(Config.AdminRolName))
+                    {
+                    <a class="btn-estandar btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    }
+
+                    <a class="btn-estandar btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+
+                    @if (User.IsInRole(Config.AdminRolName))
+                    {
+                        <a class="btn-estandar btn-sm" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

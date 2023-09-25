@@ -1,0 +1,43 @@
+﻿@model Historia_Clinica.Models.Evolucion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/controladores.css" asp-append-version="true" />
+
+<h1>Crear Evolución</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DescripcionAtencion"  class="control-label"></label>
+                <textarea asp-for="DescripcionAtencion" style="height: 200px; resize: none;" class="form-control" /></textarea>
+                <span asp-validation-for="DescripcionAtencion" class="text-danger"></span>
+            </div>    
+            <div class="form-group">
+                <label asp-for="FechayHoraAlta" class="control-label"></label>
+                <input asp-for="FechayHoraAlta" class="form-control" />
+                <span asp-validation-for="FechayHoraAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>                
+                <input asp-for="MedicoId" hidden />
+            </div>
+            <div>
+                <input asp-for="EpisodioId" hidden />
+            </div>
+            <div class="form-group text-right" style="margin-top: 30px">
+                <div class="btn-group ml-auto">
+                    <input type="submit" value="Crear" class="btn btn-primary btn-lg" />
+                    <a asp-action="Index" class="btn btn-primary btn-lg">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
